@@ -1,16 +1,14 @@
 import React from 'react';
-import Shows from './Shows.js';
 
 const employee = ( props ) => {
     return (
         <div>
-            <p>Name: </p>
-            <p>Title: </p>
-            <p>Speciality: </p>
-            <p>Animals under care: </p>
-            <div>Shows:
-                {/* <Shows/> */}
-            </div>
+            <p><b>Name:</b> {props.name} <b> | Title:</b> {props.title} seniority {props.level}<b> | Speciality:</b> {props.speciality}</p>
+            <p><b>Description: </b> {props.children}</p>
+            <p><b>Animals under care: </b></p>
+            {/* <div><b>Shows:</b>
+                <Shows/>
+            </div> */}
         </div>
     );
 };
