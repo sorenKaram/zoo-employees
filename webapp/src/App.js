@@ -12,7 +12,7 @@ class App extends Component {
   };
 
   promotionHandler = () => {
-    console.log('wat clicked');
+    // console.log('was clicked');
 
     this.setState(
       this.state.persons.map(emp => {
