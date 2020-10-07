@@ -2,8 +2,10 @@
   text-align: center;
 }
 
-.web-header{
+.headerBackground{
   background-color: lightblue;
-  color: white;
 }
 
+.headerColor{
+  color: white;
+}
