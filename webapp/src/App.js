@@ -6,15 +6,16 @@ class App extends Component {
   state = {
     persons: [
       {
-        name: "Fred", title: "Zookeeper", level: 1, speciality: "Pandas", desc: "Loves animals.", animals: ["grey panda", "pink panda"]
+        id: '0', name: "Fred", title: "Zookeeper", level: 2, speciality: "Pandas", desc: "Likes to be in nature.", animals: ["grey panda", "pink panda"]
       },
       {
-        name: "Tira", title: "Zookeeper", level: 3, speciality: "Mammals, Insects", desc: "Has 7 pets.", animals: []
+        id: '1', name: "Tira", title: "Zookeeper", level: 4, speciality: "Mammals, Insects", desc: "Has 7 animal encyclopedias.", animals: []
       },
       {
-        name: "Charles", title: "Vet", level: 9, speciality: "Mammals & Reptiles", desc: "Degree from University", animals: ["horse"]
+        id: '2', name: "Charles", title: "Vet", level: 8, speciality: "Mammals & Reptiles", desc: "Degree from University", animals: ["horse"]
       },
-    ]
+    ],
+    showPersons: false
   };
 
   promotionHandler = (empToChangeByName) => {
@@ -51,39 +52,58 @@ class App extends Component {
   //   );
   // }
 
-  changeDescHandler = (test) => {
-    this.setState({
-      persons: [
-        {
-          name: "Fred", title: "Zookeeper", level: 1, speciality: "Pandas", desc: test.target.value, animals: ["grey panda", "pink panda"]
-        },
-        {
-          name: "Tira", title: "Zookeeper", level: 3, speciality: "Mammals, Insects", desc: "Has 7 pets.", animals: []
-        },
-        {
-          name: "Charles", title: "Vet", level: 9, speciality: "Mammals & Reptiles", desc: "Degree from University", animals: ["horse"]
-        },
-      ]
-    })
+  changeDescHandler = (event, id) => {
+    const personIndex = this.state.persons.findIndex(p => {
+      return p.id === id;
+    });
+
+    const person = {...this.state.persons[personIndex]};
+    person.desc = event.target.value;
+    const persons = [...this.state.persons];
+    persons[personIndex] = person;
+
+    this.setState( {persons: persons} );
+  }
+
+  deleteEmployeeHandler = (index) => {
+    const persons = this.state.persons.slice();
+    persons.splice(index, 1);
+    this.setState({persons: persons});
+  }
+
+  toggleEmployeesHandler = () => {
+    this.setState({showPersons: !this.state.showPersons});
   }
 
   render() {
+    const buttonStyle = {
+      backgroundColor: 'white',
+      font: 'inherit',
+      border: '4px solid green',
+      padding: '8px',
+      margin: '2px',
+      cursor: 'pointer'
+    }
+
     return (
       <div className="App-Root">
         <h1 className="web-header">Colorado River Zoo</h1>
-        <button onClick={this.promotionHandler.bind(this, null)}>Promotion!</button>
-        <Employee name={this.state.persons[0].name} title={this.state.persons[0].title} level={this.state.persons[0].level} 
-        click={this.promotionHandler.bind(this, this.state.persons[0].name)}
-        animals={this.state.persons[0].animals} editDesc={this.changeDescHandler}
-        speciality={this.state.persons[0].speciality}>{this.state.persons[0].desc}</Employee>
-        <Employee name={this.state.persons[1].name} title={this.state.persons[1].title} level={this.state.persons[1].level}
-        click={this.promotionHandler.bind(this, this.state.persons[1].name)}
-        animals={this.state.persons[1].animals}
-        speciality={this.state.persons[1].speciality}>{this.state.persons[1].desc}</Employee>
-        <Employee name={this.state.persons[2].name} title={this.state.persons[2].title} level={this.state.persons[2].level}
-        click={this.promotionHandler.bind(this, this.state.persons[2].name)}
-        animals={this.state.persons[2].animals}
-        speciality={this.state.persons[2].speciality}>{this.state.persons[2].desc}</Employee>
+        <button style={buttonStyle} onClick={this.toggleEmployeesHandler}>Toggle Employees</button>
+        { this.state.showPersons ? 
+          <div>
+            <button style={buttonStyle} onClick={this.promotionHandler.bind(this, null)}>Promotion!</button>
+              { this.state.persons.map((employee, index) => {
+                return <Employee name={employee.name} title={employee.title} level={employee.level} key={employee.id}
+                promote={this.promotionHandler.bind(this, employee.name)}
+                deleteEmployee={() => this.deleteEmployeeHandler(index)}
+                animals={employee.animals} 
+                editDesc={(event) => this.changeDescHandler(event, employee.id)}
+                speciality={employee.speciality}>{employee.desc}</Employee>
+              })}
+          </div>
+          : null
+        }
+        
         
       </div>
     );
