@@ -134,8 +134,11 @@ class App extends Component {
 
     return (
       <div className="App-Root">
-        <Cockpit showEmployees={this.state.showEmployees} employees={this.state.employees} buttonToggleStyle={buttonToggleStyle}
-        toggleEmployeesHandler={this.toggleEmployeesHandler} />
+        <Cockpit 
+          showEmployees={this.state.showEmployees} 
+          employees={this.state.employees} 
+          buttonToggleStyle={buttonToggleStyle}
+          toggleEmployeesHandler={this.toggleEmployeesHandler} />
         {employees} 
       </div>
     );
