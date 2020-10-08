@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './Employee.css';
 import Aux from '../../hoc/Auxiliary';
 import withClass from '../../hoc/withClass';
@@ -29,6 +30,16 @@ const employee = ( props ) => {
             <input type="text" onChange={props.editDesc} value={props.children}/>
         </Aux>
     );
+};
+
+employee.propTypes = {
+    name: PropTypes.string,
+    title: PropTypes.string,
+    level: PropTypes.number,
+    speciality: PropTypes.string,
+    animals: PropTypes.arrayOf(PropTypes.any),
+    promote: PropTypes.func,
+    deleleEmployee: PropTypes.func
 };
 
 export default withClass(employee, 'Employee');
