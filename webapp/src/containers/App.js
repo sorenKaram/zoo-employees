@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Employees from '../components/Employees/Employees';
+import Cockpit from '../components/Cockpit/Cockpit';
 
 class App extends Component {
   state = {
@@ -121,7 +122,8 @@ class App extends Component {
           <Employees 
             employees={this.state.employees} 
             promote={this.promotionHandler} 
-            changeDesc={this.changeDescHandler}/>
+            changeDesc={this.changeDescHandler}
+            deleteEmployee={this.deleteEmployeeHandler}/>
         </div>
       )
 
@@ -129,22 +131,12 @@ class App extends Component {
       buttonToggleStyle.color = 'white';
     }
 
-    let classes = ['headerBackground', 'headerColor'];
-    if(this.state.employees.length === 2){
-      classes.pop();
-    }
-    if(this.state.employees.length === 1){
-      classes.push('headerColor');
-    }
-    if(this.state.employees.length === 0){
-      classes.pop();
-    }
 
     return (
       <div className="App-Root">
-        <h1 className={classes.join(' ')}>Colorado River Zoo</h1>
-        <button style={buttonToggleStyle} onClick={this.toggleEmployeesHandler}>Toggle Employees</button>
-        {employees}
+        <Cockpit showEmployees={this.state.showEmployees} employees={this.state.employees} buttonToggleStyle={buttonToggleStyle}
+        toggleEmployeesHandler={this.toggleEmployeesHandler} />
+        {employees} 
       </div>
     );
   }
