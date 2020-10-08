@@ -1,0 +1,17 @@
+C:\Users\abudugu\Documents\Employee.API\Employee.API\bin\Debug\netcoreapp2.1\Properties\launchSettings.json
+C:\Users\abudugu\Documents\Employee.API\Employee.API\bin\Debug\netcoreapp2.1\Employee.API.deps.json
+C:\Users\abudugu\Documents\Employee.API\Employee.API\bin\Debug\netcoreapp2.1\Employee.API.runtimeconfig.json
+C:\Users\abudugu\Documents\Employee.API\Employee.API\bin\Debug\netcoreapp2.1\Employee.API.runtimeconfig.dev.json
+C:\Users\abudugu\Documents\Employee.API\Employee.API\bin\Debug\netcoreapp2.1\Employee.API.dll
+C:\Users\abudugu\Documents\Employee.API\Employee.API\bin\Debug\netcoreapp2.1\Employee.API.pdb
+C:\Users\abudugu\Documents\Employee.API\Employee.API\obj\Debug\netcoreapp2.1\Employee.API.csprojAssemblyReference.cache
+C:\Users\abudugu\Documents\Employee.API\Employee.API\obj\Debug\netcoreapp2.1\Employee.API.AssemblyInfoInputs.cache
+C:\Users\abudugu\Documents\Employee.API\Employee.API\obj\Debug\netcoreapp2.1\Employee.API.AssemblyInfo.cs
+C:\Users\abudugu\Documents\Employee.API\Employee.API\obj\Debug\netcoreapp2.1\Employee.API.RazorAssemblyInfo.cache
+C:\Users\abudugu\Documents\Employee.API\Employee.API\obj\Debug\netcoreapp2.1\Employee.API.RazorAssemblyInfo.cs
+C:\Users\abudugu\Documents\Employee.API\Employee.API\obj\Debug\netcoreapp2.1\Employee.API.RazorTargetAssemblyInfo.cache
+C:\Users\abudugu\Documents\Employee.API\Employee.API\obj\Debug\netcoreapp2.1\Employee.API.dll
+C:\Users\abudugu\Documents\Employee.API\Employee.API\obj\Debug\netcoreapp2.1\Employee.API.pdb
+C:\Users\abudugu\Documents\Employee.API\Employee.API\obj\Debug\netcoreapp2.1\Employee.API.genruntimeconfig.cache
+C:\Users\abudugu\Documents\Employee.API\Employee.API\bin\Debug\netcoreapp2.1\nlog.config
+C:\Users\abudugu\Documents\Employee.API\Employee.API\obj\Debug\netcoreapp2.1\Employee.API.csproj.CoreCompileInputs.cache
