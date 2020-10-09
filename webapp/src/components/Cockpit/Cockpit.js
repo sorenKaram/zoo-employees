@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import './Cockpit.css';
+import AuthContext from '../../context/auth-context';
 
 const cockpit = (props) => {
     let assignClasses = ['headerBackground', 'headerColor'];
@@ -13,10 +14,23 @@ const cockpit = (props) => {
       assignClasses.pop();
     }
 
+    const authContext = useContext(AuthContext);
+
+    let loginButtonStyle = {...props.buttonStyle};
+    
+    let loginText = "Log in";
+    if(authContext.isAuthenticated){
+        loginButtonStyle.backgroundColor = 'green';
+        loginButtonStyle.color = 'white';
+        loginText = "Log out";
+    }
+
     return (
         <div>
             <h1 className={assignClasses.join(' ')}>Colorado River Zoo</h1>
-            <button style={props.buttonToggleStyle} onClick={props.toggleEmployeesHandler}>Toggle Employees</button>
+                <button onClick={authContext.login} style={loginButtonStyle}>{loginText}</button>
+            <br/>
+            <button style={props.toggleEmployeesButtonStyle} onClick={props.toggleEmployeesHandler}>Toggle Employees</button>
         </div>
     );
 }

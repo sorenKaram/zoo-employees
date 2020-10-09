@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './Employee.css';
-import Aux from '../../hoc/Auxiliary';
-import withClass from '../../hoc/withClass';
+import Aux from '../../../hoc/Auxiliary';
+import withClass from '../../../hoc/withClass';
+import AuthContext from '../../../context/auth-context';
+
 
 const employee = ( props ) => {
     const buttonStyle = {
@@ -15,17 +17,24 @@ const employee = ( props ) => {
       }
 
     return (
-        <Aux>
+        <Aux>  
             <p><b>Name:</b> {props.name} <b> | Title:</b> {props.title} seniority {props.level}<b> | Speciality:</b> {props.speciality}</p>
             <p><b>Description: </b> {props.children}</p>
             <p><b>Animals under care: </b> {props.animals}</p>
             {/* <div><b>Shows:</b>
                 <Shows/>
             </div> */}
-            <button style={buttonStyle} onClick={props.promote}>Promote me!</button>
-            <button style={buttonStyle} onClick={props.deleteEmployee}>Delete me</button>
-
+            <AuthContext.Consumer>
+                {context => 
+                    context.isAuthenticated ? 
+                    <Aux>
+                        <button style={buttonStyle} onClick={props.promote}>Promote me!</button>
+                        <button style={buttonStyle} onClick={props.deleteEmployee}>Delete me</button>
+                    </Aux>
+                    : <p>Please login in order to promote or delete employees.</p>
+                }
             
+            </AuthContext.Consumer>
             <br/>
             <input type="text" onChange={props.editDesc} value={props.children}/>
         </Aux>

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Employees from '../components/Employees/Employees';
 import Cockpit from '../components/Cockpit/Cockpit';
+import AuthContext from '../context/auth-context';
 
 class App extends Component {
   state = {
@@ -39,7 +40,8 @@ class App extends Component {
         id: '2', name: "Charles", title: "Vet", level: 8, speciality: "Mammals & Reptiles", desc: "Degree from University", animals: ["horse"]
       },
     ],
-    showEmployees: false
+    showEmployees: false,
+    isAuthenticated: false
   };
 
   promotionHandler = (empId) => {
@@ -77,6 +79,11 @@ class App extends Component {
   //   );
   // }
 
+  loginHandler = () => {
+    const loginStatus = this.state.isAuthenticated;
+    this.setState({isAuthenticated: !loginStatus});
+  }
+
   changeDescHandler = (event, id) => {
     const personIndex = this.state.employees.findIndex(p => {
       return p.id === id;
@@ -97,7 +104,8 @@ class App extends Component {
   }
 
   toggleEmployeesHandler = () => {
-    this.setState({showEmployees: !this.state.showEmployees});
+    const showEmp = this.state.showEmployees;
+    this.setState({showEmployees: !showEmp});
   }
 
   render() {
@@ -111,11 +119,12 @@ class App extends Component {
       color: 'black'
     }
 
-    const buttonToggleStyle = {...buttonStyle};
-
     let employees = null;
 
+    let toggleEmployeesButtonStyle = {...buttonStyle};
+
     if(this.state.showEmployees){
+      
       employees = (
         <div>
           <button style={buttonStyle} onClick={this.promotionHandler.bind(this, null)}>Promotion!</button>
@@ -127,19 +136,21 @@ class App extends Component {
         </div>
       )
 
-      buttonToggleStyle.backgroundColor = 'green';
-      buttonToggleStyle.color = 'white';
+      toggleEmployeesButtonStyle.backgroundColor = 'green';
+      toggleEmployeesButtonStyle.color = 'white';
     }
-
 
     return (
       <div className="App-Root">
-        <Cockpit 
-          showEmployees={this.state.showEmployees} 
-          employees={this.state.employees} 
-          buttonToggleStyle={buttonToggleStyle}
-          toggleEmployeesHandler={this.toggleEmployeesHandler} />
-        {employees} 
+        <AuthContext.Provider value={{isAuthenticated: this.state.isAuthenticated, login: this.loginHandler}}>
+          <Cockpit 
+            showEmployees={this.state.showEmployees} 
+            employees={this.state.employees} 
+            buttonStyle={buttonStyle}
+            toggleEmployeesButtonStyle={toggleEmployeesButtonStyle}
+            toggleEmployeesHandler={this.toggleEmployeesHandler} />
+          {employees} 
+        </AuthContext.Provider>
       </div>
     );
   }
