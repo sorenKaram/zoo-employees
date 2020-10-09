@@ -118,5 +118,12 @@ namespace Employee.API.Controllers
 
             return NoContent();
         }
+
+        [Route("really/long/or/different/route")]
+        [HttpGet()]
+        public IActionResult GetServerStatus()
+        {
+            return Ok("Server last checked at: " + DateTime.Now.ToString());
+        }
     }
 }

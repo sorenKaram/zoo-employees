@@ -4,23 +4,26 @@ import './App.css';
 import Employees from '../components/Employees/Employees';
 import Cockpit from '../components/Cockpit/Cockpit';
 import AuthContext from '../context/auth-context';
-
-const endpoint = "http://localhost:1028/api/employees";
+import specialAxiosInstance from './specialAxiosInstance';
 
 class App extends Component {
   state = {
     employees: [],
     showEmployees: false,
-    isAuthenticated: false
+    isAuthenticated: false,
+    serverStatus: "No response."
   };
 
   componentDidMount(){
-    console.log('comp did mount')
-    axios.get(endpoint)
-    .then(response =>{
-      console.log('response', response);
-      this.setState({employees: response.data})
+    axios.get()
+    .then(response => {
+      this.setState({employees: response.data});
     });
+    this.checkServer();
+  }
+
+  checkServer = () => {
+    specialAxiosInstance.get().then(response => this.setState({serverStatus: response.data}));
   }
 
   promotionHandler = (empId) => {
@@ -131,6 +134,8 @@ class App extends Component {
             toggleEmployeesHandler={this.toggleEmployeesHandler} />
           {employees} 
         </AuthContext.Provider>
+        <button style={buttonStyle} onClick={this.checkServer}>Check Server</button>
+        <p>{this.state.serverStatus}</p>
       </div>
     );
   }
