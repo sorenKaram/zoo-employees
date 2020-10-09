@@ -94,7 +94,7 @@ namespace Employee.API
                     Id = 3,
                     Name= "Amy",
                     Description = "Securuty Guard",
-                    Level = 3,
+                    Level = 4,
                     Speciality ="bears",
                     Animals = new List<string>{"bear", "greyBear"},
                     Shows = new List<ShowsDto>()
@@ -130,7 +130,7 @@ namespace Employee.API
                     Id = 4,
                     Name= "Kim",
                     Description = "Security Head",
-                    Level = 4,
+                    Level = 8,
                      Speciality ="elephant",
                      Animals = new List<string>{"elephant", "babyElephant"},
                     Shows = new List<ShowsDto>()
