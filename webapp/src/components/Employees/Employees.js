@@ -8,8 +8,8 @@ const employees = (props) => (
         deleteEmployee={() => props.deleteEmployee(index)}
         animals={employee.animals} 
         editDesc={(event) => props.changeDesc(event, employee.id)}
-        speciality={employee.speciality}>{employee.desc}</Employee>
-      })
+        speciality={employee.speciality}>{employee.description}</Employee>
+    })
 );
 
 export default employees;

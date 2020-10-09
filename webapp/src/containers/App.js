@@ -15,6 +15,7 @@ class App extends Component {
   };
 
   componentDidMount(){
+    console.log('comp did mount')
     axios.get(endpoint)
     .then(response =>{
       console.log('response', response);
@@ -63,16 +64,17 @@ class App extends Component {
   }
 
   changeDescHandler = (event, id) => {
+    
     const personIndex = this.state.employees.findIndex(p => {
       return p.id === id;
     });
 
-    const person = {...this.state.employees[personIndex]};
-    person.desc = event.target.value;
-    const employees = [...this.state.employees];
-    employees[personIndex] = person;
+    const emp = {...this.state.employees[personIndex]};
+    emp.description = event.target.value;
+    const employeesArr = [...this.state.employees];
+    employeesArr[personIndex] = emp;
 
-    this.setState( {employees: employees} );
+    this.setState( {employees: employeesArr} );
   }
 
   deleteEmployeeHandler = (index) => {
