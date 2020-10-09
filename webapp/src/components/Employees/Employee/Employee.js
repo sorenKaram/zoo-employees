@@ -20,6 +20,8 @@ const employee = ( props ) => {
         <Aux>  
             <p><b>Name:</b> {props.name} <b> | Title:</b> {props.title} seniority {props.level}<b> | Speciality:</b> {props.speciality}</p>
             <p><b>Description: </b> {props.children}</p>
+            <input type="text" onChange={props.editDesc} value={props.children}/>
+            <button style={buttonStyle}>Save Description</button>
             <p><b>Animals under care: </b> {props.animals}</p>
             {/* <div><b>Shows:</b>
                 <Shows/>
@@ -33,10 +35,7 @@ const employee = ( props ) => {
                     </Aux>
                     : <p>Please login in order to promote or delete employees.</p>
                 }
-            
             </AuthContext.Consumer>
-            <br/>
-            <input type="text" onChange={props.editDesc} value={props.children}/>
         </Aux>
     );
 };

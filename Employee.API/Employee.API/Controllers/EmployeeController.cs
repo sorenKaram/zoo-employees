@@ -1,11 +1,8 @@
 ﻿using Employee.API.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Employee.API.Controllers
 {
@@ -120,6 +117,13 @@ namespace Employee.API.Controllers
             EmployeesDataStore.Current.Employees.Remove(employee);
 
             return NoContent();
+        }
+
+        [Route("really/long/or/different/route")]
+        [HttpGet()]
+        public IActionResult GetServerStatus()
+        {
+            return Ok("Server last checked at: " + DateTime.Now.ToString());
         }
     }
 }
